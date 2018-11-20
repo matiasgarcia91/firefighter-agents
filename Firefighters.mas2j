@@ -1,0 +1,25 @@
+/*
+    firefighters
+    ---------------------------
+
+    Jason Project File
+
+    This file defines the initial state of the MAS
+
+    Jason 
+    November 20, 2018 - 17:49:48
+*/
+
+MAS firefighters {
+
+    infrastructure: Centralised
+	
+    environment: FireEnv(gui)
+
+    agents:
+        firefighter #3;
+
+        plane;
+
+}
+
