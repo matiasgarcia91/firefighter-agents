@@ -8,7 +8,9 @@ import java.util.logging.*;
 public class FireEnv extends Environment {
 
     // common literals
-    public static final Literal fa  = Literal.parseLiteral("open(fridge)");
+    public static final Literal fa  = Literal.parseLiteral("fire");
+    public static final Literal wf  = Literal.parseLiteral("weakFire");
+    public static final Literal sf  = Literal.parseLiteral("strongFire");
 
     private Logger logger = Logger.getLogger("Firefighters.mas2j."+FireEnv.class.getName());
 
@@ -22,7 +24,7 @@ public class FireEnv extends Environment {
         if (args.length == 1 && args[0].equals("gui")) {
             BoardView view  = new BoardView(model);
             model.setView(view);
-        } 
+        }
 
         updatePercepts();
     }
@@ -37,7 +39,7 @@ public class FireEnv extends Environment {
 
             // get the agent location
             Location lAgent = model.getAgPos(i);
-
+            addPercept(agentName, Literal.parseLiteral("location("+lAgent+")"));
             // add percept if agent is at fire
             if (model.fireAt(lAgent)) {
                 addPercept(agentName, fa);
@@ -50,22 +52,10 @@ public class FireEnv extends Environment {
             // add number of victims in current cell to percepts if any
             int victims = model.victimsAt(lAgent);
             if (victims > 0) {
-                addPercept(agentName, Literal.parseLiteral("victims("+lAgent+","+victims+")"));
-            }
-
-            // add beer "status" the percepts
-            if (model.fridgeOpen) {
-                addPercept("robot", );
+                addPercept(agentName, Literal.parseLiteral("victims("+victims+")"));
             }
         }
 
-        
-
-        
-        if (model.sipCount > 0) {
-            addPercept("robot", hob);
-            addPercept("owner", hob);
-        }
     }
 
     @Override
@@ -83,4 +73,3 @@ public class FireEnv extends Environment {
         super.stop();
     }
 }
-
