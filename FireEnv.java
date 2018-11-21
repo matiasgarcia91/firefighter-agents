@@ -8,9 +8,9 @@ import java.util.logging.*;
 public class FireEnv extends Environment {
 
     // Belifs
-    public static final Literal fa  = Literal.parseLiteral("fire()");
-    public static final Literal wf  = Literal.parseLiteral("weakFire()");
-    public static final Literal sf  = Literal.parseLiteral("strongFire()");
+    public static final Literal fa  = Literal.parseLiteral("fire(X)");
+    public static final Literal wf  = Literal.parseLiteral("weakFire(X)");
+    public static final Literal sf  = Literal.parseLiteral("strongFire(X)");
 
     // Actions
     public static final Literal owf = Literal.parseLiteral("squash(weakFire)");
@@ -20,7 +20,7 @@ public class FireEnv extends Environment {
     public static final Literal cf = Literal.parseLiteral("call(firefighters)");
     public static final Literal cp = Literal.parseLiteral("call(plane)");
     public static final Literal bd = Literal.parseLiteral("broadcast(danger)");
-    public static final Literal mv = Literal.parseLiteral("move(Y)");
+    public static final Literal wk = Literal.parseLiteral("walk(X)");
 
 
     private Logger logger = Logger.getLogger("Firefighters.mas2j."+FireEnv.class.getName());
@@ -70,9 +70,34 @@ public class FireEnv extends Environment {
     public boolean executeAction(String agName, Structure action) {
       System.out.println("["+ag+"] doing: "+action);
       boolean result = false;
-      if (action.equals())
-
-
+      
+      if (action.equals(owf)) {
+      	result = model.squashWeakFire(agName);
+      }
+      if (action.equals(osf)) {
+      	result = model.squashStrongFire(agName);
+      }
+      if (action.equals(gv)) {
+      	result = model.grabVictim(agName);
+      }
+      if (action.equals(dv)) {
+      	result = model.dropVictim(agName);
+      }
+      if (action.equals(gv)) {
+      	result = model.grabVictim(agName);
+      }
+      if (action.equals(cf)) {
+      	result = model.callFirefighters(agName);
+      }
+      if (action.equals(cp)) {
+      	result = model.callPlane(agName);
+      }
+      if (action.equals(bd)) {
+      	result = model.broadcastDanger();
+      }
+      if (action.equals(wk)) {
+      	result = model.walk(agName);
+      }
     }
 
     /** Called before the end of MAS execution */
