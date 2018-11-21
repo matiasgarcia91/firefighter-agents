@@ -18,8 +18,6 @@ public class FireEnv extends Environment {
     public static final Literal gv = Literal.parseLiteral("grab(victim)");
     public static final Literal dv = Literal.parseLiteral("drop(victim)");
     public static final Literal cf = Literal.parseLiteral("call(firefighters)");
-    public static final Literal cp = Literal.parseLiteral("call(plane)");
-    public static final Literal bd = Literal.parseLiteral("broadcast(danger)");
     public static final Literal wk = Literal.parseLiteral("walk(X)");
 
 
@@ -70,7 +68,7 @@ public class FireEnv extends Environment {
     public boolean executeAction(String agName, Structure action) {
       System.out.println("["+ag+"] doing: "+action);
       boolean result = false;
-      
+
       if (action.equals(owf)) {
       	result = model.squashWeakFire(agName);
       }
@@ -83,17 +81,8 @@ public class FireEnv extends Environment {
       if (action.equals(dv)) {
       	result = model.dropVictim(agName);
       }
-      if (action.equals(gv)) {
-      	result = model.grabVictim(agName);
-      }
       if (action.equals(cf)) {
       	result = model.callFirefighters(agName);
-      }
-      if (action.equals(cp)) {
-      	result = model.callPlane(agName);
-      }
-      if (action.equals(bd)) {
-      	result = model.broadcastDanger();
       }
       if (action.equals(wk)) {
       	result = model.walk(agName);
