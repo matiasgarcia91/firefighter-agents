@@ -7,10 +7,21 @@ import java.util.logging.*;
 
 public class FireEnv extends Environment {
 
-    // common literals
-    public static final Literal fa  = Literal.parseLiteral("fire");
-    public static final Literal wf  = Literal.parseLiteral("weakFire");
-    public static final Literal sf  = Literal.parseLiteral("strongFire");
+    // Belifs
+    public static final Literal fa  = Literal.parseLiteral("fire()");
+    public static final Literal wf  = Literal.parseLiteral("weakFire()");
+    public static final Literal sf  = Literal.parseLiteral("strongFire()");
+
+    // Actions
+    public static final Literal owf = Literal.parseLiteral("squash(weakFire)");
+    public static final Literal osf = Literal.parseLiteral("squash(strongFire)");
+    public static final Literal gv = Literal.parseLiteral("grab(victim)");
+    public static final Literal dv = Literal.parseLiteral("drop(victim)");
+    public static final Literal cf = Literal.parseLiteral("call(firefighters)");
+    public static final Literal cp = Literal.parseLiteral("call(plane)");
+    public static final Literal bd = Literal.parseLiteral("broadcast(danger)");
+    public static final Literal mv = Literal.parseLiteral("move(Y)");
+
 
     private Logger logger = Logger.getLogger("Firefighters.mas2j."+FireEnv.class.getName());
 
@@ -51,20 +62,17 @@ public class FireEnv extends Environment {
             }
             // add number of victims in current cell to percepts if any
             int victims = model.victimsAt(lAgent);
-            if (victims > 0) {
-                addPercept(agentName, Literal.parseLiteral("victims("+victims+")"));
-            }
+            addPercept(agentName, Literal.parseLiteral("victims("+victims+")"));
         }
-
     }
 
     @Override
     public boolean executeAction(String agName, Structure action) {
-        logger.info("executing: "+action+", but not implemented!");
-        if (true) { // you may improve this condition
-             informAgsEnvironmentChanged();
-        }
-        return true; // the action was executed with success
+      System.out.println("["+ag+"] doing: "+action);
+      boolean result = false;
+      if (action.equals())
+
+
     }
 
     /** Called before the end of MAS execution */
