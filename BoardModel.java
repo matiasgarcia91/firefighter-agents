@@ -1,4 +1,4 @@
-import java.util.Map;
+import java.util.*;
 
 import jason.environment.grid.GridWorldModel;
 import jason.environment.grid.Location;
@@ -14,7 +14,7 @@ public class BoardModel extends GridWorldModel {
 
   int[][] victims = new int[n][m];
   int[][] fires = new int[n][m];
-  Map<String, int> agentsId = new HashMap<String, int>();
+  Map<String, Integer> agentsId = new HashMap<String, Integer>();
 
   public BoardModel() {
     super(GSize, GSize, Firefighters + Plane);

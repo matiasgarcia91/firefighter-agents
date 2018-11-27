@@ -43,13 +43,14 @@ public class FireEnv extends Environment {
         clearPercepts("plane");
 
         for (int i = 0; i < model.getNbOfFFighters(); i++) {
-            string agentName = "firefighter" + i + 1;
+            String agentName = "firefighter" + i + 1;
             clearPercepts(agentName);
 
             // get the agent location
             Location lAgent = model.getAgPos(i);
             addPercept(agentName, Literal.parseLiteral("location("+lAgent+")"));
             // add percept if agent is at fire
+            /*
             if (model.fireAt(lAgent)) {
                 addPercept(agentName, fa);
                 // add percept according to type of fire
@@ -57,16 +58,16 @@ public class FireEnv extends Environment {
                     addPercept(agentName, wf);
                 else
                     addPercept(agentName, sf);
-            }
+            } */
             // add number of victims in current cell to percepts if any
-            int victims = model.victimsAt(lAgent);
-            addPercept(agentName, Literal.parseLiteral("victims("+victims+")"));
+            // int victims = model.victimsAt(lAgent);
+            // addPercept(agentName, Literal.parseLiteral("victims("+victims+")"));
         }
     }
 
     @Override
     public boolean executeAction(String agName, Structure action) {
-      System.out.println("["+ag+"] doing: "+action);
+      System.out.println("["+agName+"] doing: "+action);
       boolean result = false;
 
       if (action.equals(owf)) {
@@ -82,9 +83,9 @@ public class FireEnv extends Environment {
       	result = model.dropVictim(agName);
       }
       if (action.equals(wk)) {
-      	result = model.walk(agName);
+      	// result = model.walk(agName);
       }
-      
+
       if (result) {
             updatePercepts();
             try {
