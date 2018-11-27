@@ -23,10 +23,14 @@ public class BoardView extends GridWorldView {
     @Override
     public void draw(Graphics g, int x, int y, int object) {
         switch (object) {
-        case BoardModel.WFIRE:
-            drawFire(g, x, y);
-            break;
+	        case BoardModel.WFIRE:
+	            drawFire(g, x, y, true);
+	            break;
+	        case BoardModel.SFIRE:
+	            drawFire(g, x, y, false);
+	            break;
         }
+
         // Location lRobot = bmodel.getAgPos(0);
         // super.drawAgent(g, x, y, Color.lightGray, -1);
         /*
@@ -78,12 +82,12 @@ public class BoardView extends GridWorldView {
         }*/
     }
 
-    public void drawFire(Graphics g, int x, int y) {
-        Color c = Color.red;
-        g.setColor(c);
+    public void drawFire(Graphics g, int x, int y, boolean isWeak) {
         super.drawObstacle(g, x, y);
-        c = Color.white;
-        g.setColor(c);
-        drawString(g, x, y, defaultFont, "1");
+        g.setColor(Color.white);
+        if (isWeak)
+        	drawString(g, x, y, defaultFont, "weak " + bmodel.victims[x][y]);
+        else
+        	drawString(g, x, y, defaultFont, "strong " + bmodel.victims[x][y]);
     }
 }
