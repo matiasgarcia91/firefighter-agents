@@ -12,6 +12,9 @@ public class BoardModel extends GridWorldModel {
   public static final int Firefighters = 3;
   public static final int Plane = 1;
 
+  public static final int WFIRE  = 16; // garbage code in grid model
+  public static final int SFIRE  = 32; // garbage code in grid model
+
   int[][] victims = new int[n][m];
   int[][] fires = new int[n][m];
   Map<String, Integer> agentsId = new HashMap<String, Integer>();
@@ -27,7 +30,7 @@ public class BoardModel extends GridWorldModel {
     for (int i = 0; i < Firefighters; i++) {
     	agentsId.put("firefighter" + i + 1, i);
     }
-
+    add(WFIRE, 3, 0);
     // initialize fires and victims
     for (int i = 0; i < n; i++) {
     	for (int j = 0; j < m; j++) {
