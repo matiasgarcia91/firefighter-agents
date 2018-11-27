@@ -24,10 +24,24 @@ public class BoardModel extends GridWorldModel {
     for (int i = 0; i < Firefighters + Plane; i++) {
     	setAgPos(i, rand.nextInt(GSize), rand.nextInt(GSize));
     }
-    for(int i = 0; i < Firefighters; i++) {
-      agentsId.put("firefighter" + i + 1, i);
+    for (int i = 0; i < Firefighters; i++) {
+    	agentsId.put("firefighter" + i + 1, i);
     }
-    // inicialize fires and victims random
+
+    // initialize fires and victims
+    for (int i = 0; i < n; i++) {
+    	for (int j = 0; j < m; j++) {
+      		int p = rand.nextInt(5);
+
+      		if (p >= 3) { // there is a fire
+	      		if (p == 3) fires[i][j] = 1; // weak fire
+	      		if (p == 4) fires[i][j] = 2; // strong fire
+
+	      		// set random number of victims
+	      		victims[i][j] = rand.nextInt(5);
+      		}
+    	}
+    }
   }
 
   int getNbOfFFighters() {
