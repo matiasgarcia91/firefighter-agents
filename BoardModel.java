@@ -19,7 +19,9 @@ public class BoardModel extends GridWorldModel {
   public BoardModel() {
     super(GSize, GSize, Firefighters + Plane);
     // Set agents position in a random nature
-    // setAgPos(0, GSize/2, GSize/2);
+    setAgPos(0, 1, 1);
+    setAgPos(1, 2, 2);
+    setAgPos(2, 3, 3);
     for(int i = 0; i < Firefighters; i++) {
       agentsId.put("firefighter" + i + 1, i);
     }
