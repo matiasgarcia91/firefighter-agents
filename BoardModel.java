@@ -16,12 +16,14 @@ public class BoardModel extends GridWorldModel {
   int[][] fires = new int[n][m];
   Map<String, Integer> agentsId = new HashMap<String, Integer>();
 
+  Random rand = new Random();
+
   public BoardModel() {
     super(GSize, GSize, Firefighters + Plane);
     // Set agents position in a random nature
-    setAgPos(0, 1, 1);
-    setAgPos(1, 2, 2);
-    setAgPos(2, 3, 3);
+    for (int i = 0; i < Firefighters + Plane; i++) {
+    	setAgPos(i, rand.nextInt(GSize), rand.nextInt(GSize));
+    }
     for(int i = 0; i < Firefighters; i++) {
       agentsId.put("firefighter" + i + 1, i);
     }
