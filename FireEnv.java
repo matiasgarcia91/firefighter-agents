@@ -87,6 +87,14 @@ public class FireEnv extends Environment {
       if (action.equals(wk)) {
       	result = model.walk(agName);
       }
+      
+      if (result) {
+            updatePercepts();
+            try {
+                Thread.sleep(100);
+            } catch (Exception e) {}
+        }
+        return result;
     }
 
     /** Called before the end of MAS execution */
