@@ -71,23 +71,14 @@ public class BoardView extends GridWorldView {
         g.setColor(Color.black);
         super.drawString(g, x, y, defaultFont, name);
 
-        /*
-        if (!lRobot.equals(bmodel.lOwner) && !lRobot.equals(bmodel.lFridge)) {
-            c = Color.yellow;
-            if (bmodel.carryingBeer) c = Color.orange;
-            super.drawAgent(g, x, y, c, -1);
-            g.setColor(Color.black);
-            super.drawString(g, x, y, defaultFont, "Robot");
-
-        }*/
     }
 
     public void drawFire(Graphics g, int x, int y, boolean isWeak) {
         super.drawObstacle(g, x, y);
         g.setColor(Color.white);
         if (isWeak)
-        	drawString(g, x, y, defaultFont, "weak " + bmodel.victims[x][y]);
+        	drawString(g, x, y, defaultFont, "weak"+ " " + bmodel.victims[x][y]);
         else
-        	drawString(g, x, y, defaultFont, "strong " + bmodel.victims[x][y]);
+        	drawString(g, x, y, defaultFont, "strong"+ " " +bmodel.victims[x][y]);
     }
 }
