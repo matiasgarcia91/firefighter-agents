@@ -50,11 +50,18 @@ public class BoardView extends GridWorldView {
 
     @Override
     public void drawAgent(Graphics g, int x, int y, Color c, int id) {
-        Location fighter1 = bmodel.getAgPos(0);
-        c = Color.orange;
+        String name;
+        if (id == 3) {
+          c = Color.blue;
+          name = "Plane";
+        } else {
+          c = Color.orange;
+          name = "Fighter" + (id + 1);
+        }
         super.drawAgent(g, x, y, c, -1);
         g.setColor(Color.black);
-        super.drawString(g, x, y, defaultFont, "Fire"+(id+1));
+        super.drawString(g, x, y, defaultFont, name);
+
         /*
         if (!lRobot.equals(bmodel.lOwner) && !lRobot.equals(bmodel.lFridge)) {
             c = Color.yellow;
