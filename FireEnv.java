@@ -81,9 +81,6 @@ public class FireEnv extends Environment {
       if (action.equals(dv)) {
       	result = model.dropVictim(agName);
       }
-      if (action.equals(cf)) {
-      	result = model.callFirefighters(agName);
-      }
       if (action.equals(wk)) {
       	result = model.walk(agName);
       }

@@ -1,3 +1,5 @@
+import java.util.Map;
+
 import jason.environment.grid.GridWorldModel;
 import jason.environment.grid.Location;
 
