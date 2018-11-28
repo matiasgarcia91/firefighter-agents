@@ -1,4 +1,5 @@
 import java.util.*;
+import java.lang.*;
 
 import jason.environment.grid.GridWorldModel;
 import jason.environment.grid.Location;
@@ -57,6 +58,18 @@ public class BoardModel extends GridWorldModel {
     return Firefighters;
   }
 
+  boolean atFire(Location agt) {
+    return fires[agt.x][agt.y] >= 3
+  }
+
+  boolean wFireAt(Location agt) {
+    return fires[agt.x][agt.y] == 3
+  }
+
+  boolean victimsAt(Location agt) {
+    return victims[agt.x][agt.y] > 0
+  }
+
   boolean squashWeakFire(String agtName) {
     int id = agentsId.get(agtName);
     Location l = getAgPos(id);
@@ -100,14 +113,17 @@ public class BoardModel extends GridWorldModel {
     return true;
   }
 
-  boolean walk(String agtName, Location dest) {
+  boolean walk(String agtName) {
       int id = agentsId.get(agtName);
-      Location r1 = getAgPos(id);
-      if (r1.x < dest.x)        r1.x++;
-      else if (r1.x > dest.x)   r1.x--;
-      if (r1.y < dest.y)        r1.y++;
-      else if (r1.y > dest.y)   r1.y--;
-      setAgPos(id, r1); // move the robot in the grid
+      Location f1 = getAgPos(id);
+      int dx = rand.nextInt(3) - 1;
+      int dy = rand.nextInt(3) - 1;
+      f1.x = Math.max(f1.x + dx, 0);
+      f1.y = Math.max(f1.y + dy, 0);
+      f1.x = Math.min(f1.x, getWidth());
+      f1.y = Math.min(f1.y, getHeight());
+
+      setAgPos(id, f1); // move the robot in the grid
 
       // repaint the fridge and owner locations
       if (view != null) {

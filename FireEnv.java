@@ -50,7 +50,7 @@ public class FireEnv extends Environment {
             Location lAgent = model.getAgPos(i);
             addPercept(agentName, Literal.parseLiteral("location("+lAgent+")"));
             // add percept if agent is at fire
-            /*
+
             if (model.fireAt(lAgent)) {
                 addPercept(agentName, fa);
                 // add percept according to type of fire
@@ -58,10 +58,11 @@ public class FireEnv extends Environment {
                     addPercept(agentName, wf);
                 else
                     addPercept(agentName, sf);
-            } */
+            }
             // add number of victims in current cell to percepts if any
-            // int victims = model.victimsAt(lAgent);
-            // addPercept(agentName, Literal.parseLiteral("victims("+victims+")"));
+            if (model.victimsAt(lAgent)) {
+                addPercept(agentName, Literal.parseLiteral("victims(X)"));
+            }
         }
     }
 
