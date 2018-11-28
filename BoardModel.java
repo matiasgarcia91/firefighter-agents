@@ -29,7 +29,7 @@ public class BoardModel extends GridWorldModel {
     	setAgPos(i, rand.nextInt(GSize), rand.nextInt(GSize));
     }
     for (int i = 0; i < Firefighters; i++) {
-    	agentsId.put("firefighter" + i + 1, i);
+    	agentsId.put("firefighter" + (i + 1), i);
     }
 
     // initialize fires and victims
@@ -120,8 +120,8 @@ public class BoardModel extends GridWorldModel {
       int dy = rand.nextInt(3) - 1;
       f1.x = Math.max(f1.x + dx, 0);
       f1.y = Math.max(f1.y + dy, 0);
-      f1.x = Math.min(f1.x, getWidth());
-      f1.y = Math.min(f1.y, getHeight());
+      f1.x = Math.min(f1.x, getWidth() - 1);
+      f1.y = Math.min(f1.y, getHeight() - 1);
 
       setAgPos(id, f1); // move the robot in the grid
 

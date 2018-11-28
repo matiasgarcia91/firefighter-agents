@@ -9,6 +9,7 @@ public class FireEnv extends Environment {
 
     // Belifs
     public static final Literal fa  = Literal.parseLiteral("fireAt(X)");
+    public static final Literal nf  = Literal.parseLiteral("noFireAt(X)");
     public static final Literal wf  = Literal.parseLiteral("weakFireAt(X)");
     public static final Literal sf  = Literal.parseLiteral("strongFireAt(X)");
 
@@ -18,7 +19,7 @@ public class FireEnv extends Environment {
     public static final Literal gv = Literal.parseLiteral("grab(victim)");
     public static final Literal dv = Literal.parseLiteral("drop(victim)");
     public static final Literal cf = Literal.parseLiteral("call(firefighters)");
-    public static final Literal wk = Literal.parseLiteral("walk(X)");
+    public static final Literal wk = Literal.parseLiteral("walk(FF)");
 
 
     private Logger logger = Logger.getLogger("Firefighters.mas2j."+FireEnv.class.getName());
@@ -45,25 +46,23 @@ public class FireEnv extends Environment {
         for (int i = 0; i < model.getNbOfFFighters(); i++) {
             String agentName = "firefighter" + (i + 1);
             clearPercepts(agentName);
-
             // get the agent location
             Location lAgent = model.getAgPos(i);
             addPercept(agentName, Literal.parseLiteral("location("+lAgent+")"));
             // add percept if agent is at fire
 
             if (model.fireAt(lAgent)) {
-                System.out.println("Fuego en:");
-                System.out.println(agentName);
                 addPercept(agentName, fa);
+                if (model.victimsAt(lAgent)) {
+                    addPercept(agentName, Literal.parseLiteral("victims(X)"));
+                }
                 // add percept according to type of fire
                 if (model.wFireAt(lAgent))
                     addPercept(agentName, wf);
                 else
                     addPercept(agentName, sf);
-            }
-            // add number of victims in current cell to percepts if any
-            if (model.victimsAt(lAgent)) {
-                addPercept(agentName, Literal.parseLiteral("victims(X)"));
+            } else {
+              addPercept(agentName, Literal.parseLiteral("noFireAt("+agentName+")"));
             }
         }
     }
@@ -85,8 +84,8 @@ public class FireEnv extends Environment {
       if (action.equals(dv)) {
       	result = model.dropVictim(agName);
       }
-      if (action.equals(wk)) {
-      	// result = model.walk(agName);
+      if (action.getFunctor().equals("walk")) {
+      	result = model.walk(agName);
       }
 
       if (result) {
