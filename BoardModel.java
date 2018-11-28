@@ -58,16 +58,16 @@ public class BoardModel extends GridWorldModel {
     return Firefighters;
   }
 
-  boolean atFire(Location agt) {
-    return fires[agt.x][agt.y] >= 3
+  boolean fireAt(Location agt) {
+    return fires[agt.x][agt.y] > 0;
   }
 
   boolean wFireAt(Location agt) {
-    return fires[agt.x][agt.y] == 3
+    return fires[agt.x][agt.y] == 1;
   }
 
   boolean victimsAt(Location agt) {
-    return victims[agt.x][agt.y] > 0
+    return victims[agt.x][agt.y] > 0;
   }
 
   boolean squashWeakFire(String agtName) {

@@ -8,9 +8,9 @@ import java.util.logging.*;
 public class FireEnv extends Environment {
 
     // Belifs
-    public static final Literal fa  = Literal.parseLiteral("fire(X)");
-    public static final Literal wf  = Literal.parseLiteral("weakFire(X)");
-    public static final Literal sf  = Literal.parseLiteral("strongFire(X)");
+    public static final Literal fa  = Literal.parseLiteral("fireAt(X)");
+    public static final Literal wf  = Literal.parseLiteral("weakFireAt(X)");
+    public static final Literal sf  = Literal.parseLiteral("strongFireAt(X)");
 
     // Actions
     public static final Literal owf = Literal.parseLiteral("squash(weakFire)");
