@@ -43,7 +43,7 @@ public class FireEnv extends Environment {
         clearPercepts("plane");
 
         for (int i = 0; i < model.getNbOfFFighters(); i++) {
-            String agentName = "firefighter" + i + 1;
+            String agentName = "firefighter" + (i + 1);
             clearPercepts(agentName);
 
             // get the agent location
@@ -52,6 +52,8 @@ public class FireEnv extends Environment {
             // add percept if agent is at fire
 
             if (model.fireAt(lAgent)) {
+                System.out.println("Fuego en:");
+                System.out.println(agentName);
                 addPercept(agentName, fa);
                 // add percept according to type of fire
                 if (model.wFireAt(lAgent))
