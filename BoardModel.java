@@ -100,7 +100,6 @@ public class BoardModel extends GridWorldModel {
     int victim = victims[l.x][l.y];
     if(victim > 0) {
       victims[l.x][l.y]--;
-      System.out.println("GRABBED");
       return true;
     } else {
       return false;

@@ -10,8 +10,6 @@ public class FireEnv extends Environment {
     // Actions
     public static final Literal owf = Literal.parseLiteral("squash(weakFire)");
     public static final Literal osf = Literal.parseLiteral("squash(strongFire)");
-    public static final Literal gv = Literal.parseLiteral("grabVictim(victim)");
-    public static final Literal dv = Literal.parseLiteral("drop(victim)");
     public static final Literal cf = Literal.parseLiteral("call(firefighters)");
     public static final Literal wk = Literal.parseLiteral("walk(FF)");
 
@@ -74,7 +72,7 @@ public class FireEnv extends Environment {
       if (action.getFunctor().equals("grabVictim")) {
       	result = model.grabVictim(agName);
       }
-      if (action.equals(dv)) {
+      if (action.getFunctor().equals("dropVictim")) {
       	result = model.dropVictim(agName);
       }
       if (action.getFunctor().equals("walk")) {
