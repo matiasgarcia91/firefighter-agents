@@ -25,8 +25,15 @@ public class BoardModel extends GridWorldModel {
   public BoardModel() {
     super(GSize, GSize, Firefighters + Plane);
     // Set agents position in a random nature
+    boolean[][] used = new boolean[n][m];
     for (int i = 0; i < Firefighters + Plane; i++) {
-    	setAgPos(i, rand.nextInt(GSize), rand.nextInt(GSize));
+    	int x, y;
+    	do {
+	    	x = rand.nextInt(n);
+	    	y = rand.nextInt(m);
+	    	setAgPos(i, x, y);
+    	} while (used[x][y]);
+    	used[x][y] = true;
     }
     for (int i = 0; i < Firefighters; i++) {
     	agentsId.put("firefighter" + (i + 1), i);
