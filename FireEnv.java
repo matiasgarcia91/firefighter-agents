@@ -40,6 +40,7 @@ public class FireEnv extends Environment {
             clearPercepts(agentName);
             // get the agent location
             Location lAgent = model.getAgPos(i);
+            addPercept(agentName, Literal.parseLiteral("location("+lAgent+")"));
 
             // add percept if agent is at fire
             if (model.fireAt(lAgent)) {
