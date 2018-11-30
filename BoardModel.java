@@ -100,6 +100,7 @@ public class BoardModel extends GridWorldModel {
     int victim = victims[l.x][l.y];
     if(victim > 0) {
       victims[l.x][l.y]--;
+      System.out.println("GRABBED");
       return true;
     } else {
       return false;
@@ -130,11 +131,34 @@ public class BoardModel extends GridWorldModel {
           canMove = false;
         }
       }
+      if (canMove) setAgPos(id, f1);
 
-
-      if (canMove) {
-        setAgPos(id, f1); // move the robot in the grid
+      // repaint the fridge and owner locations
+      if (view != null) {
+          //view.update(lFridge.x,lFridge.y);
+          //view.update(lOwner.x,lOwner.y);
       }
+      return true;
+  }
+
+  boolean goAway(String agtName) {
+      int id = agentsId.get(agtName);
+      Location f1 = getAgPos(id);
+      int dx = rand.nextInt(3) - 1;
+      int dy = rand.nextInt(3) - 1;
+      f1.x = Math.max(f1.x + dx, 0);
+      f1.y = Math.max(f1.y + dy, 0);
+      f1.x = Math.min(f1.x, getWidth() - 1);
+      f1.y = Math.min(f1.y, getHeight() - 1);
+
+      boolean canMove = true;
+      for (int i = 0; i < 3; i++) {
+        Location ltemp = getAgPos(i);
+        if (ltemp.equals(f1)) {
+          canMove = false;
+        }
+      }
+      if (canMove) setAgPos(id, f1);
 
       // repaint the fridge and owner locations
       if (view != null) {
