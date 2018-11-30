@@ -16,6 +16,7 @@
 +!tryToWalk(FF).
 
 +fireAt(FF) : victimsAt(FF) <- grabVictim(FF); !goAway(FF).
++fireAt(FF) : not victimsAt(FF) & weakFireAt(FF) <- squashWeakFire(FF); !tryToWalk(FF). 
 +fireAt(FF).
 
 

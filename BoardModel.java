@@ -74,8 +74,10 @@ public class BoardModel extends GridWorldModel {
     int id = agentsId.get(agtName);
     Location l = getAgPos(id);
     int isFire = fires[l.x][l.y];
+    System.out.println("SQUASHING WEAK FIRE:"+isFire);
     if(isFire == 1) {
       fires[l.x][l.y] = 0;
+      remove(WFIRE, l.x, l.y);
       return true;
     } else {
       return false;
