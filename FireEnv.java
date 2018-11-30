@@ -7,12 +7,6 @@ import java.util.logging.*;
 
 public class FireEnv extends Environment {
 
-    // Belifs
-    public static final Literal fa  = Literal.parseLiteral("fireAt(X)");
-    public static final Literal nf  = Literal.parseLiteral("noFireAt(X)");
-    public static final Literal wf  = Literal.parseLiteral("weakFireAt(X)");
-    public static final Literal sf  = Literal.parseLiteral("strongFireAt(X)");
-
     // Actions
     public static final Literal owf = Literal.parseLiteral("squash(weakFire)");
     public static final Literal osf = Literal.parseLiteral("squash(strongFire)");
@@ -48,19 +42,18 @@ public class FireEnv extends Environment {
             clearPercepts(agentName);
             // get the agent location
             Location lAgent = model.getAgPos(i);
-            addPercept(agentName, Literal.parseLiteral("location("+lAgent+")"));
-            // add percept if agent is at fire
 
+            // add percept if agent is at fire
             if (model.fireAt(lAgent)) {
-                addPercept(agentName, fa);
+                addPercept(agentName, Literal.parseLiteral("fireAt("+agentName+")"));
                 if (model.victimsAt(lAgent)) {
-                    addPercept(agentName, Literal.parseLiteral("victimsAt("+lAgent+")"));
+                    addPercept(agentName, Literal.parseLiteral("victimsAt("+agentName+")"));
                 }
                 // add percept according to type of fire
                 if (model.wFireAt(lAgent))
-                    addPercept(agentName, wf);
+                    addPercept(agentName, Literal.parseLiteral("weakFireAt("+agentName+")"));
                 else
-                    addPercept(agentName, sf);
+                    addPercept(agentName, Literal.parseLiteral("strongFireAt("+agentName+")"));
             } else {
               addPercept(agentName, Literal.parseLiteral("noFireAt("+agentName+")"));
             }
