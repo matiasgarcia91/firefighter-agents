@@ -12,6 +12,7 @@ public class FireEnv extends Environment {
     public static final Literal osf = Literal.parseLiteral("squash(strongFire)");
     public static final Literal cf = Literal.parseLiteral("call(firefighters)");
     public static final Literal wk = Literal.parseLiteral("walk(FF)");
+    public static final Literal pg = Literal.parseLiteral("planeGoTo(X, Y)");
 
 
     private Logger logger = Logger.getLogger("Firefighters.mas2j."+FireEnv.class.getName());
@@ -68,7 +69,7 @@ public class FireEnv extends Environment {
       	result = model.squashWeakFire(agName);
       }
       if (action.getFunctor().equals("squashStrongFire")) {
-      	result = model.squashStrongFire(agName);
+      	result = model.squashStrongFire();
       }
       if (action.getFunctor().equals("grabVictim")) {
       	result = model.grabVictim(agName);
@@ -78,6 +79,12 @@ public class FireEnv extends Environment {
       }
       if (action.getFunctor().equals("walk")) {
       	result = model.walk(agName);
+      }
+
+      if (action.getFunctor().equals("planeGoTo")) {
+        int x = Integer.parseInt(action.getTerm(0).toString());
+        int y = Integer.parseInt(action.getTerm(1).toString());
+        result = model.planeGoTo(x, y);
       }
 
       if (result) {

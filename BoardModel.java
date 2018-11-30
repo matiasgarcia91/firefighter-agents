@@ -91,12 +91,12 @@ public class BoardModel extends GridWorldModel {
     }
   }
 
-  boolean squashStrongFire(String agtName) {
-    int id = agentsId.get(agtName);
-    Location l = getAgPos(id);
+  boolean squashStrongFire() {
+    Location l = getAgPos(Firefighters);
     int isFire = fires[l.x][l.y];
     if(isFire == 2) {
       fires[l.x][l.y] = 0;
+      remove(SFIRE, l.x, l.y);
       return true;
     } else {
       return false;
@@ -168,17 +168,23 @@ public class BoardModel extends GridWorldModel {
       }
       if (canMove) setAgPos(id, f1);
 
-      // repaint the fridge and owner locations
+      // repaint other agents;
       if (view != null) {
+        for (int i = 0; i< (Firefighters + Plane); i++) {
+          Location l = getAgPos(i);
+          view.update(l.x, l.y);
+        }
           //view.update(lFridge.x,lFridge.y);
           //view.update(lOwner.x,lOwner.y);
       }
       return true;
   }
 
-
-
-
+  boolean planeGoTo(int x, int y) {
+    Location destiny = new Location(x, y);
+    setAgPos(Firefighters, destiny);
+    return true;
+  }
 
 
 }
