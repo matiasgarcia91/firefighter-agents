@@ -123,7 +123,18 @@ public class BoardModel extends GridWorldModel {
       f1.x = Math.min(f1.x, getWidth() - 1);
       f1.y = Math.min(f1.y, getHeight() - 1);
 
-      setAgPos(id, f1); // move the robot in the grid
+      boolean canMove = true;
+      for (int i = 0; i < 3; i++) {
+        Location ltemp = getAgPos(i);
+        if (ltemp.equals(f1)) {
+          canMove = false;
+        }
+      }
+
+
+      if (canMove) {
+        setAgPos(id, f1); // move the robot in the grid
+      }
 
       // repaint the fridge and owner locations
       if (view != null) {
