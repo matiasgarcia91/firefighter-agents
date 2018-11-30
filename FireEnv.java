@@ -63,10 +63,10 @@ public class FireEnv extends Environment {
       System.out.println("["+agName+"] doing: "+action);
       boolean result = false;
 
-      if (action.equals(owf)) {
+      if (action.getFunctor().equals("squashWeakFire")) {
       	result = model.squashWeakFire(agName);
       }
-      if (action.equals(osf)) {
+      if (action.getFunctor().equals("squashStrongFire")) {
       	result = model.squashStrongFire(agName);
       }
       if (action.getFunctor().equals("grabVictim")) {
