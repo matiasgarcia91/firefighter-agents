@@ -12,5 +12,5 @@
 
 /*+!start : true <- .print("hello world.").*/
 
-+fireAt(X) : true <- .print("fire").
++fireAt(X) : victimsAt(X) <- grabVictim(X).
 +!tryToWalk(FF) : noFireAt(FF) <- .print("noFire"); walk(FF); !tryToWalk(FF).

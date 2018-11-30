@@ -54,7 +54,7 @@ public class FireEnv extends Environment {
             if (model.fireAt(lAgent)) {
                 addPercept(agentName, fa);
                 if (model.victimsAt(lAgent)) {
-                    addPercept(agentName, Literal.parseLiteral("victims(X)"));
+                    addPercept(agentName, Literal.parseLiteral("victimsAt("+lAgent+")"));
                 }
                 // add percept according to type of fire
                 if (model.wFireAt(lAgent))
