@@ -10,7 +10,7 @@ public class BoardModel extends GridWorldModel {
   public static final int m = 7;
   public static final int n = 7;
   public static final int GSize = 7;
-  public static final int Firefighters = 3;
+  public static final int Firefighters = 2;
   public static final int Plane = 1;
 
   public static final int WFIRE  = 16; // garbage code in grid model

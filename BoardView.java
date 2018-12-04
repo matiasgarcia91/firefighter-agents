@@ -61,7 +61,7 @@ public class BoardView extends GridWorldView {
     public void drawAgent(Graphics g, int x, int y, Color c, int id) {
         String name;
         if (id == -1) return;
-        if (id == 3) {
+        if (id == 2) {
           c = Color.blue;
           name = "Plane";
         } else {

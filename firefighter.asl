@@ -16,14 +16,13 @@
 
 +fireAt(FF) : victimsAt(FF) <- grabVictim(FF); !goAway(FF).
 
-+!tryToWalk(FF) : strongFireAt(FF) <- walk(FF); !tryToWalk(FF).
 
-
-+fireAt(FF) : not victimsAt(FF) & weakFireAt(FF) <- squashWeakFire(FF); !tryToWalk(FF).
-+fireAt(FF) : not victimsAt(FF) & strongFireAt(FF) & location(X, Y) <- .send(plane, achieve, goToFire(X, Y)); !tryToWalk(FF).
-+fireAt(FF).
-
++fireAt(FF) : not victimsAt(FF) & weakFireAt(FF) <- squashWeakFire(FF); walk(FF); !tryToWalk(FF).
++fireAt(FF) : not victimsAt(FF) & strongFireAt(FF) & location(X, Y) <- .send(plane, achieve, goToFire(X, Y)); walk(FF); !tryToWalk(FF).
 
 +!goAway(FF) : fireAt(FF) <- walk(FF); !goAway(FF).
 +!goAway(FF) : noFireAt(FF) <- dropVictim(FF); !tryToWalk(FF).
-+!goAway(FF).
+
++!tryToWalk(FF).
+
+/* +!tryToWalk(FF) : fireAt(FF) <- walk(FF); .print(" ==============  NADAAAA =============="); !tryToWalk(FF). */

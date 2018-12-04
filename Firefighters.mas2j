@@ -18,7 +18,7 @@ MAS firefighters {
     environment: FireEnv(gui)
 
     agents:
-        firefighter #3;
+        firefighter #2;
         plane;
 
 }
