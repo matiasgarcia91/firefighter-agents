@@ -91,8 +91,11 @@ public class BoardModel extends GridWorldModel {
     if(isFire == 1) {
       fires[l.x][l.y] = 0;
       remove(WFIRE, l.x, l.y);
+      return true;
+    } else {
+      return false;
     }
-    return true;
+
   }
 
   boolean squashStrongFire() {
@@ -101,8 +104,10 @@ public class BoardModel extends GridWorldModel {
     if(isFire == 2) {
       fires[l.x][l.y] = 0;
       remove(SFIRE, l.x, l.y);
+      return true;
+    } else {
+      return false;
     }
-    return true;
   }
 
   boolean grabVictim(String agtName) {
@@ -113,9 +118,10 @@ public class BoardModel extends GridWorldModel {
       int victim = victims[l.x][l.y];
       if(victim > 0) {
         victims[l.x][l.y]--;
+        return true;
       }
     }
-    return true;
+    return false;
   }
 
   boolean dropVictim(String agtName) {
@@ -125,8 +131,9 @@ public class BoardModel extends GridWorldModel {
     if(hasVictim[id]){
       hasVictim[id] = false;
       victims[l.x][l.y]++;
+      return true;
     }
-    return true;
+    return false;
   }
 
   boolean tryToAssist(String agtName, int x, int y) {
