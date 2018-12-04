@@ -139,7 +139,11 @@ public class BoardModel extends GridWorldModel {
           canMove = false;
         }
       }
-      if (canMove) setAgPos(id, f1);
+      if (canMove) {
+        setAgPos(id, f1);
+      } else {
+        setAgPos(id, getAgPos(id));
+      }
 
       // repaint the fridge and owner locations
       if (view != null) {
@@ -166,7 +170,11 @@ public class BoardModel extends GridWorldModel {
           canMove = false;
         }
       }
-      if (canMove) setAgPos(id, f1);
+      if (canMove) {
+        setAgPos(id, f1);
+      } else {
+        setAgPos(id, getAgPos(id));
+      }
 
       // repaint other agents;
       if (view != null) {
