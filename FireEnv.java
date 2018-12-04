@@ -57,6 +57,10 @@ public class FireEnv extends Environment {
             } else {
               addPercept(agentName, Literal.parseLiteral("noFireAt("+agentName+")"));
             }
+
+            if(model.firefighterHasVictim(i)) {
+              addPercept(agentName, Literal.parseLiteral("hasVictim("+agentName+")"));
+            }
         }
     }
 

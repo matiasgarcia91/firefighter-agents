@@ -19,6 +19,7 @@ public class BoardModel extends GridWorldModel {
   int[][] victims = new int[n][m];
   int[][] fires = new int[n][m];
   Map<String, Integer> agentsId = new HashMap<String, Integer>();
+  boolean[] hasVictim = new boolean[Firefighters];
 
   Random rand = new Random();
 
@@ -77,6 +78,12 @@ public class BoardModel extends GridWorldModel {
     return victims[agt.x][agt.y] > 0;
   }
 
+  boolean firefighterHasVictim(int id) {
+    if (id == Firefighters) return false;
+    boolean temp = hasVictim[id];
+    return temp;
+  }
+
   boolean squashWeakFire(String agtName) {
     int id = agentsId.get(agtName);
     Location l = getAgPos(id);
@@ -101,9 +108,12 @@ public class BoardModel extends GridWorldModel {
   boolean grabVictim(String agtName) {
     int id = agentsId.get(agtName);
     Location l = getAgPos(id);
-    int victim = victims[l.x][l.y];
-    if(victim > 0) {
-      victims[l.x][l.y]--;
+    if(hasVictim[id] ==  false) {
+      hasVictim[id] = true;
+      int victim = victims[l.x][l.y];
+      if(victim > 0) {
+        victims[l.x][l.y]--;
+      }
     }
     return true;
   }
@@ -111,7 +121,11 @@ public class BoardModel extends GridWorldModel {
   boolean dropVictim(String agtName) {
     int id = agentsId.get(agtName);
     Location l = getAgPos(id);
-    victims[l.x][l.y]++;
+    if (fires[l.x][l.y] != 0) return false;
+    if(hasVictim[id]){
+      hasVictim[id] = false;
+      victims[l.x][l.y]++;
+    }
     return true;
   }
 
@@ -126,7 +140,7 @@ public class BoardModel extends GridWorldModel {
       	setAgPos(id, f1);
 
       return true;
-      
+
   }
 
   boolean walk(String agtName) {
