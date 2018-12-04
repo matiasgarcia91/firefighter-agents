@@ -81,14 +81,11 @@ public class BoardModel extends GridWorldModel {
     int id = agentsId.get(agtName);
     Location l = getAgPos(id);
     int isFire = fires[l.x][l.y];
-    System.out.println("SQUASHING WEAK FIRE:"+isFire);
     if(isFire == 1) {
       fires[l.x][l.y] = 0;
       remove(WFIRE, l.x, l.y);
-      return true;
-    } else {
-      return false;
     }
+    return true;
   }
 
   boolean squashStrongFire() {
@@ -97,10 +94,8 @@ public class BoardModel extends GridWorldModel {
     if(isFire == 2) {
       fires[l.x][l.y] = 0;
       remove(SFIRE, l.x, l.y);
-      return true;
-    } else {
-      return false;
     }
+    return true;
   }
 
   boolean grabVictim(String agtName) {
@@ -109,10 +104,8 @@ public class BoardModel extends GridWorldModel {
     int victim = victims[l.x][l.y];
     if(victim > 0) {
       victims[l.x][l.y]--;
-      return true;
-    } else {
-      return false;
     }
+    return true;
   }
 
   boolean dropVictim(String agtName) {
@@ -153,13 +146,18 @@ public class BoardModel extends GridWorldModel {
           canMove = false;
         }
       }
-      if (canMove) setAgPos(id, f1);
 
-      // repaint the fridge and owner locations
-      if (view != null) {
-          //view.update(lFridge.x,lFridge.y);
-          //view.update(lOwner.x,lOwner.y);
+      if (canMove) {
+        setAgPos(id, f1);
+      } else {
+        setAgPos(id, getAgPos(id));
       }
+
+      if (view != null) {
+        Location planePos = getAgPos(Firefighters);
+        view.update(planePos.x, planePos.y);
+      }
+
       return true;
   }
 
@@ -180,23 +178,34 @@ public class BoardModel extends GridWorldModel {
           canMove = false;
         }
       }
-      if (canMove) setAgPos(id, f1);
 
-      // repaint other agents;
-      if (view != null) {
-        for (int i = 0; i< (Firefighters + Plane); i++) {
-          Location l = getAgPos(i);
-          view.update(l.x, l.y);
-        }
-          //view.update(lFridge.x,lFridge.y);
-          //view.update(lOwner.x,lOwner.y);
+      if (canMove) {
+        setAgPos(id, f1);
+      } else {
+        setAgPos(id, getAgPos(id));
       }
+
+      if (view != null) {
+        Location planePos = getAgPos(Firefighters);
+        view.update(planePos.x, planePos.y);
+      }
+
       return true;
   }
 
   boolean planeGoTo(int x, int y) {
     Location destiny = new Location(x, y);
     setAgPos(Firefighters, destiny);
+    /*
+    if (view != null) {
+      for(int i = 0; i < Firefighters; i++) {
+        if (i == Firefighters) continue;
+        Location tempPos = getAgPos(i);
+        view.update(tempPos.x, tempPos.y);
+      }
+        //view.update(lFridge.x,lFridge.y);
+        //view.update(lOwner.x,lOwner.y);
+    } */
     return true;
   }
 

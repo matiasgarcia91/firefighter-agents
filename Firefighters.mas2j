@@ -12,7 +12,7 @@
 */
 
 MAS firefighters {
-
+	
     infrastructure: Centralised
 
     environment: FireEnv(gui)
