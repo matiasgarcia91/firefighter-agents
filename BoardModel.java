@@ -122,6 +122,20 @@ public class BoardModel extends GridWorldModel {
     return true;
   }
 
+  boolean tryToAssist(String agtName, int x, int y) {
+      int id = agentsId.get(agtName);
+      Location f1 = getAgPos(id);
+
+      if (Math.abs(x - f1.x) <= 1 && Math.abs(y - f1.y) <= 1) {
+      	setAgPos(id, x, y);
+      }
+      else
+      	setAgPos(id, f1);
+
+      return true;
+      
+  }
+
   boolean walk(String agtName) {
       int id = agentsId.get(agtName);
       Location f1 = getAgPos(id);

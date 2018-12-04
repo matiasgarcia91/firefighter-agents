@@ -87,6 +87,13 @@ public class FireEnv extends Environment {
         result = model.planeGoTo(x, y);
       }
 
+      if (action.getFunctor().equals("tryToAssist")) {
+      	String agentName = action.getTerm(0).toString();
+        int x = Integer.parseInt(action.getTerm(1).toString());
+        int y = Integer.parseInt(action.getTerm(2).toString());
+        result = model.tryToAssist(agentName, x, y);
+      }
+
       if (result) {
             updatePercepts();
             try {
