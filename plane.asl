@@ -10,4 +10,4 @@
 
 +!start : true <- .print("hello world.").
 
-+!goToFire(X, Y) : true <- planeGoTo(X, Y); squashStrongFire(plane).
++!goToFire(X, Y) : true <- planeGoTo(X, Y).

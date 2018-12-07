@@ -15,7 +15,7 @@
 
 +!saveVictims(FF): true <- grabVictim(FF); !goAway(FF).
 +!squashWeak(FF) : true <- squashWeakFire(FF); walk(FF); !tryToWalk(FF).
-+!squashStrong(FF) : true <- squashStrongFire(FF); walk(FF); !tryToWalk(FF).
++!squashStrong(FF) : location(X, Y) <- .send(plane, achieve, goToFire(X, Y)); .print("plane called"); walk(FF); !goAway(FF).
 +!goAway(FF) : noFireAt(FF) <- dropVictim(FF); walk(FF); !tryToWalk(FF).
 
 +fireAt(FF) : victimsAt(FF) <- !saveVictims(FF).
@@ -25,10 +25,5 @@
 +!goAway(FF) : fireAt(FF) <- walk(FF); !goAway(FF).
 +!tryToWalk(FF) : noFireAt(FF) <- walk(FF); !tryToWalk(FF).
 
-+!tryToWalk(FF).
-+!goAway(FF).
-+!squashWeak(FF).
-+!squashStrong(FF).
-+!saveVictims(FF).
 
 /* +!tryToWalk(FF) : fireAt(FF) <- walk(FF); .print(" ==============  NADAAAA =============="); !tryToWalk(FF). */

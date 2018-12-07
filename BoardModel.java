@@ -91,10 +91,8 @@ public class BoardModel extends GridWorldModel {
     }
   }
 
-  boolean squashStrongFire(String agtName) {
-    int id = agentsId.get(agtName);
-    Location l = getAgPos(id);
-    // Location l = getAgPos(Firefighters);
+  boolean squashStrongFire() {
+    Location l = getAgPos(Firefighters);
     int isFire = fires[l.x][l.y];
     if(isFire == 2) {
       fires[l.x][l.y] = 0;
@@ -193,7 +191,7 @@ public class BoardModel extends GridWorldModel {
   boolean planeGoTo(int x, int y) {
     Location destiny = new Location(x, y);
     setAgPos(Firefighters, destiny);
-    return true;
+    return squashStrongFire();
   }
 
 
