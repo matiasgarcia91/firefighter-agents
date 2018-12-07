@@ -10,7 +10,7 @@ public class BoardModel extends GridWorldModel {
   public static final int m = 7;
   public static final int n = 7;
   public static final int GSize = 7;
-  public static final int Firefighters = 2;
+  public static final int Firefighters = 3;
   public static final int Plane = 1;
 
   public static final int WFIRE  = 16; // garbage code in grid model
@@ -133,7 +133,7 @@ public class BoardModel extends GridWorldModel {
       f1.y = Math.min(f1.y, getHeight() - 1);
 
       boolean canMove = true;
-      for (int i = 0; i < 3; i++) {
+      for (int i = 0; i < Firefighters; i++) {
         Location ltemp = getAgPos(i);
         if (ltemp.equals(f1)) {
           canMove = false;
@@ -164,7 +164,7 @@ public class BoardModel extends GridWorldModel {
       f1.y = Math.min(f1.y, getHeight() - 1);
 
       boolean canMove = true;
-      for (int i = 0; i < 3; i++) {
+      for (int i = 0; i < Firefighters; i++) {
         Location ltemp = getAgPos(i);
         if (ltemp.equals(f1)) {
           canMove = false;
