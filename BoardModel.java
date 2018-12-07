@@ -81,7 +81,6 @@ public class BoardModel extends GridWorldModel {
     int id = agentsId.get(agtName);
     Location l = getAgPos(id);
     int isFire = fires[l.x][l.y];
-    System.out.println("SQUASHING WEAK FIRE:"+isFire);
     if(isFire == 1) {
       fires[l.x][l.y] = 0;
       remove(WFIRE, l.x, l.y);
@@ -90,6 +89,20 @@ public class BoardModel extends GridWorldModel {
       return false;
     }
   }
+
+
+  boolean tryToAssist(String agtName, int x, int y) {
+    int id = agentsId.get(agtName);
+    Location f1 = getAgPos(id);
+     if (Math.abs(x - f1.x) <= 1 && Math.abs(y - f1.y) <= 1) {
+    	setAgPos(id, x, y);
+      System.out.println(" ====== assiting:"+agtName+" ====== ");
+    }
+    else
+    	setAgPos(id, f1);
+      System.out.println(" ====== cant assist:"+agtName+" ====== ");
+     return true;
+   }
 
   boolean squashStrongFire() {
     Location l = getAgPos(Firefighters);
