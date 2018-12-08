@@ -34,8 +34,6 @@ public class FireEnv extends Environment {
 
     /** creates the agents percepts based on the BoardModel */
     void updatePercepts() {
-        clearPercepts("plane");
-
         for (int i = 0; i < model.getNbOfFFighters(); i++) {
             String agentName = "firefighter" + (i + 1);
             clearPercepts(agentName);

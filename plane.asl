@@ -2,11 +2,13 @@
 
 /* Initial beliefs and rules */
 
+fullTank(plane).
+
 /* Initial goals */
 
 /* Plans */
 
-+!goToFire(X, Y) <- planeGoTo(X, Y).
++!goToFire(X, Y): fullTank(plane) <- planeGoTo(X, Y); -fullTank(plane); !refill(plane).
 +!goToFire(X, Y).
 
-+!goToHelp(FF).
++!refill(plane) <- +fullTank(plane).
