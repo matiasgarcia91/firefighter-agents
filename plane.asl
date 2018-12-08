@@ -4,11 +4,7 @@
 
 /* Initial goals */
 
-!start.
-
 /* Plans */
-
-+!start : true <- .print("hello world.").
 
 +!goToFire(X, Y) <- planeGoTo(X, Y).
 +!goToFire(X, Y).

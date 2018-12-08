@@ -4,15 +4,9 @@
 
 /* Initial goals */
 
-!tryToWalk(FF).
-
-/*!start.*/
-
-/* Plans */
-
 !work(FF).
 
-/*+!start : true <- .print("hello world.").*/
+/* Plans */
 
 +help(X, Y)
 	:	noFireAt(FF)
