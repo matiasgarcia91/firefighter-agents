@@ -10,7 +10,4 @@
 
 +!start : true <- .print("hello world.").
 
-+!goToFire(X, Y) <- planeGoTo(X, Y).
-+!goToFire(X, Y).
-
-+!goToHelp(FF).
++!goToFire(X, Y) : true <- planeGoTo(X, Y).

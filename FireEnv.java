@@ -68,9 +68,6 @@ public class FireEnv extends Environment {
       if (action.getFunctor().equals("squashWeakFire")) {
       	result = model.squashWeakFire(agName);
       }
-      if (action.getFunctor().equals("squashStrongFire")) {
-      	result = model.squashStrongFire();
-      }
       if (action.getFunctor().equals("grabVictim")) {
       	result = model.grabVictim(agName);
       }

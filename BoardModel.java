@@ -90,31 +90,19 @@ public class BoardModel extends GridWorldModel {
     }
   }
 
-
   boolean tryToAssist(String agtName, int x, int y) {
     int id = agentsId.get(agtName);
     Location f1 = getAgPos(id);
-     if (Math.abs(x - f1.x) <= 1 && Math.abs(y - f1.y) <= 1) {
+    if (Math.abs(x - f1.x) <= 1 && Math.abs(y - f1.y) <= 1) {
     	setAgPos(id, x, y);
-      System.out.println(" ====== assiting:"+agtName+" ====== ");
+      	System.out.println(" ====== assiting:"+agtName+" ====== ");
     }
-    else
+    else {
     	setAgPos(id, f1);
-      System.out.println(" ====== cant assist:"+agtName+" ====== ");
+      	System.out.println(" ====== cant assist:"+agtName+" ====== ");
+    }
      return true;
    }
-
-  boolean squashStrongFire() {
-    Location l = getAgPos(Firefighters);
-    int isFire = fires[l.x][l.y];
-    if(isFire == 2) {
-      fires[l.x][l.y] = 0;
-      remove(SFIRE, l.x, l.y);
-      return true;
-    } else {
-      return false;
-    }
-  }
 
   boolean grabVictim(String agtName) {
     int id = agentsId.get(agtName);
@@ -202,10 +190,18 @@ public class BoardModel extends GridWorldModel {
   }
 
   boolean planeGoTo(int x, int y) {
-    Location destiny = new Location(x, y);
-    setAgPos(Firefighters, destiny);
-    return squashStrongFire();
+    Location l = new Location(x, y);
+    setAgPos(Firefighters, l);
+
+    int fire = fires[l.x][l.y];
+
+    if (fire == 2) {
+      fires[l.x][l.y] = 0;
+      remove(SFIRE, l.x, l.y);
+      return true;
+    } else {
+    	//TODO: Somehow plane is being called with fire == 0 @_@
+        return false;
+    }
   }
-
-
 }
